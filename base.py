@@ -19,7 +19,7 @@ REMOTE_URL = os.environ.get("POSGRESQL_REMOTE_URL")
 REMOTE_PORT = os.environ.get("POSGRESQL_REMOTE_PORT")
 
 
-if HOSTNAME:
+if HOSTNAME == "Docker":
     print("Localhost / Docker")
     # Localhost / Docker
     engine = create_engine(f"postgresql://{LOCAL_USER}:{LOCAL_USER_PASSWORD}@{LOCAL_URL}:{LOCAL_PORT}/{DATABASE}")
