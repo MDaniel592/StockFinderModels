@@ -4,21 +4,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-HOSTNAME = os.environ.get("HOSTNAME", False)
 DATABASE = os.environ.get("POSGRESQL_DATABASE")
+USER     = os.environ.get("POSGRESQL_USER")
+PASSWORD = os.environ.get("POSGRESQL_PASSWORD")
+URL      = os.environ.get("POSGRESQL_URL")
+PORT     = os.environ.get("POSGRESQL_PORT")
 
-LOCAL_USER = os.environ.get("POSGRESQL_LOCAL_USER")
-LOCAL_USER_PASSWORD = os.environ.get("POSGRESQL_LOCAL_USER_PASSWORD")
-LOCAL_URL = os.environ.get("POSGRESQL_LOCAL_URL")
-LOCAL_PORT = os.environ.get("POSGRESQL_LOCAL_PORT")
-
-REMOTE_USER = os.environ.get("POSGRESQL_REMOTE_USER")
-REMOTE_USER_PASSWORD = os.environ.get("POSGRESQL_REMOTE_USER_PASSWORD")
-REMOTE_URL = os.environ.get("POSGRESQL_REMOTE_URL")
-REMOTE_PORT = os.environ.get("POSGRESQL_REMOTE_PORT")
-
-
-engine = create_engine(f"postgresql://{LOCAL_USER}:{LOCAL_USER_PASSWORD}@{LOCAL_URL}:{LOCAL_PORT}/{DATABASE}")
+engine = create_engine(f"postgresql://{USER}:{PASSWORD}@{URL}:{PORT}/{DATABASE}")
 Session = sessionmaker(bind=engine)
 
 Base = declarative_base()
